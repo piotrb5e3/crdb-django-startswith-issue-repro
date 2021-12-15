@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+    main:
+        image: crdb-startswith-issue-repro:latest
+        networks:
+            - repro
+        depends_on:
+            - db
+    db:
+        image: cockroachdb/cockroach:v21.1.12
+        command: start-single-node --insecure
+        networks:
+            - repro
+networks:
+    repro:
